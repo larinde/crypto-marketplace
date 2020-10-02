@@ -13,7 +13,7 @@ It uses the default 8080 port.
 
 ```bash
  mvn clean package
- java -jar target/credsuisse-challenge.jar
+ java -jar target/crypto-marketplace.jar
 ```
 
 The running application instance is initialised with:
