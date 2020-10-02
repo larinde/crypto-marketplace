@@ -9,10 +9,10 @@ import org.springframework.web.bind.annotation.*
 @RequestMapping("/api")
 class CryptoOrderController(val cryptoMarketService: CryptoMarketService){
 
-	@PostMapping("/orders", consumes = arrayOf(MediaType.APPLICATION_JSON_VALUE))
-	fun placeOrder(@RequestBody request: OrderRequest): ResponseEntity<String> {
-		cryptoMarketService.placeOrder(request)
-		return ResponseEntity.ok("ok")
+	@PostMapping("/orders", consumes = arrayOf(MediaType.APPLICATION_JSON_VALUE), produces = arrayOf(MediaType.APPLICATION_JSON_VALUE) )
+	fun placeOrder(@RequestBody request: OrderRequest): OrderCreatedResponse {
+		val  id = cryptoMarketService.placeOrder(request)
+		return OrderCreatedResponse(id.toString())
 	}
 
 	@DeleteMapping("/orders/{orderId}")

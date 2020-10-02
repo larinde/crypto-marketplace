@@ -23,6 +23,13 @@ It uses the default 8080 port.
 ```bash
  curl --header "Content-Type: application/json"  --request POST   --data '{"userId":"777","orderType":"SELL","coinType":"ETHERIUM","quantity": "99", "price":"9999.99"}'  http://localhost:8080/api/orders -v
 ```
+The response is a JSON payload containing the created order resource id
+
+```json
+{
+ "orderId":"12"
+}
+```
 
 ##### Cancel an Order using curl
 ```bash
@@ -32,4 +39,30 @@ It uses the default 8080 port.
 ##### Retrieve live Order using curl
 ```bash
   curl   --request GET  http://localhost:8080/api/orders/summary/SELL -v
+```
+Response: An array of summarised orders
+
+```json
+[
+  {
+    "quantity": 50.5,
+    "price": 7.0
+  },
+  {
+    "quantity": 70.75,
+    "price": 13.35
+  },
+  {
+    "quantity": 201.0,
+    "price": 25.125
+  },
+  {
+    "quantity": 200.75,
+    "price": 250.0
+  },
+  {
+    "quantity": 100.5,
+    "price": 300.0
+  }
+]
 ```

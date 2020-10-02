@@ -18,6 +18,8 @@ enum class OrderType(val type: String) {
 	BUY("BUY"), SELL("SELL")
 }
 
+data class OrderCreatedResponse(val orderId: String)
+
 data class OrderResponse(val orderId: Long,
 						 val userId: Long,
 						 val orderType: OrderType,

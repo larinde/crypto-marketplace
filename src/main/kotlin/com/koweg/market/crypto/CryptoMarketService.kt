@@ -24,8 +24,10 @@ class CryptoMarketService{
 	)
 
 
-	fun placeOrder(request: OrderRequest): Unit {
-		orderRepository.putIfAbsent(orderIdGen.get(), OrderResponse(orderIdGen.getAndIncrement(), request.userId.trim().toLong(), OrderType.valueOf(request.orderType.trim()), CoinType.valueOf(request.coinType.trim()), request.quantity.trim().toDouble(), request.price.trim().toDouble()))
+	fun placeOrder(request: OrderRequest): Long {
+		val orderId = orderIdGen.get()
+		orderRepository.putIfAbsent(orderId, OrderResponse(orderIdGen.getAndIncrement(), request.userId.trim().toLong(), OrderType.valueOf(request.orderType.trim()), CoinType.valueOf(request.coinType.trim()), request.quantity.trim().toDouble(), request.price.trim().toDouble()))
+		return orderId
 	}
 
 	fun cancelOrder(orderId: Long){
