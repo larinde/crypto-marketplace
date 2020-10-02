@@ -10,7 +10,7 @@ import org.springframework.test.context.junit.jupiter.SpringExtension
 import org.springframework.test.web.servlet.MockMvc
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders
 import org.springframework.test.web.servlet.result.MockMvcResultMatchers
-
+import org.springframework.boot.test.mock.mockito.MockBean
 
 @ExtendWith(SpringExtension::class)
 @WebMvcTest(CryptoOrderController::class)
@@ -18,6 +18,9 @@ class CryptoOrderControllerTest {
 
     @Autowired
     lateinit private var mockMvc: MockMvc
+
+    @MockBean
+    private lateinit var cryptoMarketService: CryptoMarketService
 
     @Test
     fun `should succesfully place an order and receive an ok response`() {

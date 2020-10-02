@@ -1,6 +1,6 @@
 
 
-| Action                     | HTTP Method   | URI  Cool                |
+| Action                     | HTTP Method   | URI                      |
 |:---------------------------|:-------------:|:-------------------------|
 | Place an order             |  POST         | /api/orders              |
 | Cancel an order            |  DELETE       | /api/orders/{orderId}    |
@@ -11,10 +11,6 @@
 ##### Building and deploying the app
 This implementation is based on a Spring Boot application that runs in an embedded Tomcat container.
 It uses the default 8080 port.
-
-For the sake of brevity all the code was implemented in a single class. Ideally, the business-logic should be refactored
-and encapsulated in a service layer.
-
 
 
 ```bash
