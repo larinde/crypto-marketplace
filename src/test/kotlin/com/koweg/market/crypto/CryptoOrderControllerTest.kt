@@ -8,9 +8,9 @@ import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest
 import org.springframework.http.MediaType
 import org.springframework.test.context.junit.jupiter.SpringExtension
 import org.springframework.test.web.servlet.MockMvc
-import org.springframework.test.web.servlet.ResultMatcher
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders
 import org.springframework.test.web.servlet.result.MockMvcResultMatchers
+
 
 @ExtendWith(SpringExtension::class)
 @WebMvcTest(CryptoOrderController::class)
@@ -24,7 +24,7 @@ class CryptoOrderControllerTest {
         mockMvc.perform(MockMvcRequestBuilders
                 .post("/api/orders")
                 .contentType(MediaType.APPLICATION_JSON)
-                .content("{\"userId\":\"1\",\"orderType\":\"SELL\",\"coinType\":\"ETHERIUM\",\"quantity\": \"1000\", \"price\":\"370.99\"}" ))
+                .content("{\"userId\":\"1\",\"orderType\":\"SELL\",\"coinType\":\"ETHERIUM\",\"quantity\": \"1000\", \"price\":\"370.99\"}"))
                 .andExpect(MockMvcResultMatchers.status().isOk)
    }
 
@@ -40,9 +40,7 @@ class CryptoOrderControllerTest {
         mockMvc.perform(MockMvcRequestBuilders
                 .get("/api/orders/summary/{type}", "SELL")
                 .accept(MediaType.APPLICATION_JSON))
-                .andExpect(MockMvcResultMatchers.status().isOk)
-                //.andExpect(MockMvcResultMatchers.jsonPath("$", Matchers.hasSize(6)))
-
+                .andExpect(MockMvcResultMatchers.status().isOk())
     }
 
 }

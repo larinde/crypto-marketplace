@@ -10,7 +10,7 @@
 
 ##### Building and deploying the app
 This implementation is based on a Spring Boot application that runs in an embedded Tomcat container.
-It uses default 8080 port.
+It uses the default 8080 port.
 
 For the sake of brevity all the code was implemented in a single class. Ideally, the business-logic should be refactored
 and encapsulated in a service layer.
@@ -35,5 +35,5 @@ and encapsulated in a service layer.
 
 ##### Retrieve live Order using curl
 ```bash
-  curl   --request DELETE   http://localhost:8080/api/orders/summary/SELL -v
+  curl   --request GET  http://localhost:8080/api/orders/summary/SELL -v
 ```
