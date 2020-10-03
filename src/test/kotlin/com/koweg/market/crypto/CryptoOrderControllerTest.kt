@@ -29,6 +29,7 @@ class CryptoOrderControllerTest {
                 .contentType(MediaType.APPLICATION_JSON)
                 .content("{\"userId\":\"1\",\"orderType\":\"SELL\",\"coinType\":\"ETHERIUM\",\"quantity\": \"1000\", \"price\":\"370.99\"}"))
                 .andExpect(MockMvcResultMatchers.status().isOk)
+                .andExpect(MockMvcResultMatchers.content().string(Matchers.containsString("orderId")))
    }
 
     @Test
@@ -43,7 +44,7 @@ class CryptoOrderControllerTest {
         mockMvc.perform(MockMvcRequestBuilders
                 .get("/api/orders/summary/{type}", "SELL")
                 .accept(MediaType.APPLICATION_JSON))
-                .andExpect(MockMvcResultMatchers.status().isOk())
+                .andExpect(MockMvcResultMatchers.status().isOk)
     }
 
 }

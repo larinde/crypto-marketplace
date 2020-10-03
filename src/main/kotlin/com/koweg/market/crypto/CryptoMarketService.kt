@@ -8,6 +8,7 @@ import java.util.stream.Collectors
 class CryptoMarketService{
 
 	val orderIdGen = AtomicLong(1)
+	val topTenOrders = 10
 
 	val orderRepository = mutableMapOf(
 			orderIdGen.get() to OrderResponse(orderIdGen.getAndIncrement(), 900, OrderType.SELL, CoinType.ETHERIUM, 74.25, 111.11),
@@ -37,7 +38,9 @@ class CryptoMarketService{
 										OrderResponse::price,
 										Collectors.summingDouble(OrderResponse::quantity)
 								)
-						).entries.map { OrderSummary(it.value, it.key) }.sortedBy { it.price }
+						).entries.map { OrderSummary(it.value, it.key) }
+						.sortedBy { it.price }
+						.take(topTenOrders)
 			}
 			(type.trim() == OrderType.BUY.type) -> {
 				orderRepository.values
@@ -48,7 +51,9 @@ class CryptoMarketService{
 										OrderResponse::price,
 										Collectors.summingDouble(OrderResponse::quantity)
 								)
-						).entries.map { OrderSummary(it.value, it.key) }.sortedByDescending { it.price }
+						).entries.map { OrderSummary(it.value, it.key) }
+						.sortedByDescending { it.price }
+						.take(topTenOrders)
 			}
 			else -> emptyList()
 		}
